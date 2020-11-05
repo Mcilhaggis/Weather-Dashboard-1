@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <header>
+        <!-- Navbar -->
+        <nav id="navbar" class="navbar navbar-dark bg-dark">
+            <span id="navbar-text" class="navbar-brand mb-0 h1 w-100 text-center">Weather Dashboard</span>
+        </nav>
+
+    </header>
+
+
+    <!-- Search for City -->
+    <div class="row">
+        <div class="col-4">
+            <!-- Wrapped content in a card -->
+            <div id="card-content" class="card">
+                <!-- H4 title -->
+                <h4>Search for a City:</h4>
+                <div class="card-body">
+
+                    <!-- Searchbar -->
+                    <div id="searchbar-content" class="input-group mb-3">
+                        <input type="text" class="form-control">
+
+                        <!-- Search button -->
+                        <div class="input-group-append">
+                            <button id="search-button" class="btn btn-primary" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <form id="history"></form>
+        </div>
+
+        <!-- City information display -->
+        <div id="city-display" class="col-8">
+            <div id="city-display-border">
+                <div class="row mr-0">
+                    <div class="col-12 m-3 rounded">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <span id="city-name" class="city-name align-middle"></span>
+                                <img id="current-pic" src="placeholder" alt="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <p id="temperature"></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <p id="humidity"></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <p id="wind-speed"></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 d-flex">
+                                <p id="UV-index"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <h3>5-Day Forecast</h3>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"></div>
+                <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"></div>
+                <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"></div>
+                <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"></div>
+                <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="Assets/javascript/script.js"></script>
+</body>
+
+</html>
