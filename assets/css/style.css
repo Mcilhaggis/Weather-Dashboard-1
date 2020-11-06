@@ -7,27 +7,25 @@
     }
 
 /* Navbar Styling */
-#navbar {
-    color: #fff;
+.navbar {
     height: 100px;
-
 }
 
-#navbar-text {
+.navbar-text {
     font-weight: 500;
     font-size: 40px;
     font-family: 'Roboto', sans-serif;
 }
 
 /* Styling for search bar card */
-#card-content {
+.card-content {
     background-color: #f8f9fa;
     padding: 20px 20px 20px 20px;
     border: none;
     border-radius: 0%;
 }
 
-#searchbar-content {
+.searchbar-content {
     margin-left: -20px;
     width: 100%;
 }
@@ -46,7 +44,7 @@ input[type="text"] {
   }
 
 /* Creating a border for the city display information */
-#city-display-border {
+.city-display-border {
     border-radius: 5px;
     border: 1px solid #dfdfdf;
 }
