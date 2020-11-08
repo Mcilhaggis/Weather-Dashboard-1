@@ -2,6 +2,7 @@
 let searchbarContent = document.querySelector('.searchbar-content');
 let searchbarInput = searchbarContent.querySelector('.searchbar-input');
 let searchButton = searchbarContent.querySelector('.search-button');
+
 let historyContent = document.querySelector('.history-content');
 
 let cityName = document.querySelector('.city-name');
@@ -12,8 +13,12 @@ let weatherUvIndex = document.querySelector('.weather-uv-index');
 
 let fiveDayForecast = document.querySelector('.forecast');
 
-//Global variable to store the search input
+//Global variable to store the search input and api key
 let searchText;
+let apiKey = '32e2f43ba93ca7e7987d0e123e9c252a';
+let searchHistory = [];
+
+// console.log(storage);
 
 // let storageArray = [];
 // let storage = localStorage.getItem('City') || [];
@@ -26,9 +31,18 @@ searchButton.addEventListener('click', function () {
     //Clear the 5-Day forecast element each time the search button is clicked
     $('.forecast').empty();
 
-    //The input value submitted gets stored into the searchText variable
+        //The input value submitted gets stored into the searchText variable
     searchText = searchbarInput.value;
     // console.log(searchText);
+   
+    
+
+    localStorage.setItem('City', JSON.stringify(searchText));
+    searchHistory.push(searchText);
+    // console.log(searchHistory);
+
+
+    renderSearchHistory();
 
 
     // storage.push(searchText)
@@ -39,7 +53,7 @@ searchButton.addEventListener('click', function () {
 
 
     //Making a promise to get the api data from url depending on what the user input is within the search field
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + searchbarInput.value + '&units=imperial&appid=32e2f43ba93ca7e7987d0e123e9c252a')
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + searchbarInput.value + '&units=imperial&appid=' + apiKey)
 
         //Then once we have the response, it gets converted into javascript object notation
         .then(response => response.json())
@@ -76,7 +90,7 @@ searchButton.addEventListener('click', function () {
             weatherWindSpeed.innerHTML = windspeedValue;
 
             //Creating a nested fetch to get the uv index using the data we stored in the variables lattitude and longitude
-            fetch('http://api.openweathermap.org/data/2.5/uvi?lat=' + lattitude + '&lon=' + longitude + '&appid=32e2f43ba93ca7e7987d0e123e9c252a')
+            fetch('http://api.openweathermap.org/data/2.5/uvi?lat=' + lattitude + '&lon=' + longitude + '&appid=' + apiKey)
                 .then(responseTwo => responseTwo.json())
                 .then(dataTwo => {
                     console.log(dataTwo)
@@ -90,7 +104,7 @@ searchButton.addEventListener('click', function () {
                     weatherUvIndex.append(uvIndex);
 
                     //Creating a fetch for the 5 day forecast
-                    fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + searchbarInput.value + '&units=imperial&appid=32e2f43ba93ca7e7987d0e123e9c252a')
+                    fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + searchbarInput.value + '&units=imperial&appid=' + apiKey)
                         .then(responseThree => responseThree.json())
                         .then(dataThree => {
                             console.log(dataThree)    
@@ -149,7 +163,24 @@ searchButton.addEventListener('click', function () {
         })
         //If the search value is not equal to a valid city name, this error will be alerted
         .catch(err => alert('Wrong city name!'))
+
+        
 });
+
+let renderSearchHistory = () => {
+            for (let i = 0; i < searchHistory.length; i++) {
+                
+                let historyItem = document.createElement('input');
+
+                historyItem.setAttribute('type', 'text');
+                historyItem.setAttribute('readonly', true);
+                historyItem.setAttribute('class', 'form-control d-block bg-white');
+                historyItem.setAttribute('value', searchHistory[i]);
+                SearchHistory = JSON.parse(localStorage.getItem('City')) || [];
+
+                historyContent.append(historyItem)
+            }
+        }
 
                     //Need to store search values into local storage
                     //Retrieve search values from local storage
