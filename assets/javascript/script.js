@@ -176,9 +176,10 @@ let renderSearchHistory = () => {
                 historyItem.setAttribute('readonly', true);
                 historyItem.setAttribute('class', 'form-control d-block bg-white');
                 historyItem.setAttribute('value', searchHistory[i]);
-                SearchHistory = JSON.parse(localStorage.getItem('City')) || [];
+                SearchHistory = JSON.parse(localStorage.getItem('City'));
 
                 historyContent.append(historyItem)
+                searchHistory = [];
             }
         }
 
