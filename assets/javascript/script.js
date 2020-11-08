@@ -10,7 +10,8 @@ let weatherHumidity = document.querySelector('.weather-humidity');
 let weatherWindSpeed = document.querySelector('.weather-wind-speed');
 let weatherUvIndex = document.querySelector('.weather-uv-index');
 
-let fiveDayForecast = document.querySelectorAll('.forecast');
+
+
 
 //Global variable to store the search input
 let searchText;
@@ -47,7 +48,7 @@ searchButton.addEventListener('click', function () {
 
             //Storing the data we recieved into variables by targeting the index value
             let pictureValue = data['weather'][0]['icon']
-            let nameValue = data['name'];  
+            let nameValue = data['name'];
             let temperatureValue = 'Temperature: ' + data['main']['temp'] + '°F';
             let humidityValue = 'Humidity: ' + data['main']['humidity'] + '%';
             let windspeedValue = 'Wind Speed: ' + data['wind']['speed'] + ' MPH';
@@ -64,10 +65,10 @@ searchButton.addEventListener('click', function () {
             weatherPicture.setAttribute("alt", data['weather'][0]['description']);
 
             //Setting the inner html elements with the data I stored into variables
-            cityName.innerHTML =  nameValue + ' (' + (moment().format('M') + "/" + moment().format('D') + '/' + moment().format('YYYY')) + ')' ;
+            cityName.innerHTML = nameValue + ' (' + (moment().format('M') + "/" + moment().format('D') + '/' + moment().format('YYYY')) + ')';
             //Appending the weather icon on to the end of the city name
             cityName.append(weatherPicture);
-            
+
             weatherTemperature.innerHTML = temperatureValue;
             weatherHumidity.innerHTML = humidityValue;
             weatherWindSpeed.innerHTML = windspeedValue;
@@ -94,10 +95,14 @@ searchButton.addEventListener('click', function () {
                         .then(dataThree => {
                             console.log(dataThree)
 
+                            let fiveDayForecast = document.querySelector('.forecast');
+
                             let holdContent = dataThree['list'];
                             // console.log(holdContent);
 
-                            for (let i = 0; i < holdContent.length; i+=8) {
+                            
+
+                            for (let i = 0; i < holdContent.length; i += 8) {
                                 console.log(holdContent[i])
 
                                 let forecastDate = new Date(holdContent[i]['dt'] * 1000);
@@ -112,11 +117,13 @@ searchButton.addEventListener('click', function () {
                                 let forecastYear = forecastDate.getFullYear();
                                 // console.log(forecastYear)
 
+
+
                                 // let forecastDateEl = document.createElement("p");
                                 // forecastDateEl.setAttribute("class", "mt-3 mb-0 forecast-date");
                                 // forecastDateEl.innerHTML = forecastMonth + "/" + forecastDay + "/" + forecastYear;
-                                // fiveDayForecast[i].append(forecastDateEl);
-                            
+                                // fiveDayForecast.append(forecastDateEl);
+
                                 let forecastPicture = holdContent[i]['weather'][0]['icon'];
                                 // console.log(forecastPicture);
 
@@ -125,8 +132,15 @@ searchButton.addEventListener('click', function () {
 
                                 let forecastHumidity = holdContent[i]['main']['humidity'];
                                 // console.log(forecastHumidity);
-                                                            
-                            
+
+                                let htmlForecastTemp = document.createElement('p');
+                                htmlForecastTemp.innerHTML = 'Temp: ' + forecastTemp + '°F';
+                                holdContent[i].appendChild(htmlForecastTemp);
+
+
+                                // fiveDayForecast.innerhtml = forecastTemp;
+
+
                             }
                         })
                 })
