@@ -49,3 +49,11 @@ input[type="text"] {
     border: 1px solid #dfdfdf;
 }
 
+/* City name font styling */
+.city-name {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
+
