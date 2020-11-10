@@ -13,6 +13,8 @@ let fiveDayForecast = document.querySelector('.forecast');
 let searchText;
 let apiKey = '32e2f43ba93ca7e7987d0e123e9c252a';
 let searchHistory = [];
+searchHistory = JSON.parse(localStorage.getItem('City')) || [];
+
 let getWeather = () => {
     //Making a promise to get the api data from url depending on what the user input is within the search field
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + searchbarInput.value + '&units=imperial&appid=' + apiKey)
@@ -114,17 +116,17 @@ searchButton.addEventListener('click', function () {
     //The input value submitted gets stored into the searchText variable
     searchText = searchbarInput.value;
     // console.log(searchText);
-
-    SearchHistory = JSON.parse(localStorage.getItem('City') || []);
+    getWeather(searchText);
+    
 
     searchHistory.push(searchText);
 
-    localStorage.setItem('City', JSON.stringify(searchText));
+    localStorage.setItem('City', JSON.stringify(searchHistory));
 
    
     // console.log(searchHistory);
 
-    getWeather();
+    
     renderSearchHistory();
 });
 
@@ -143,19 +145,23 @@ let renderSearchHistory = () => {
 
         
 
-        historyContent.append(historyItem);
-        searchHistory = [];
+        
+        // searchHistory = [];
 
         historyItem.addEventListener('click', function () {
 
             //Clear the 5-Day forecast element each time the search button is clicked
             $('.forecast').empty();
 
-            getWeather();
+            getWeather(historyItem.value);
 
         });
+
+        historyContent.append(historyItem);
 
 
 
     }
 }
+
+renderSearchHistory();
